@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { Month } from '../interfaces/month';
+import { Months } from '../interfaces/months';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -12,8 +12,8 @@ export class MonthsService {
   constructor(private readonly httpClient: HttpClient) { }
 
 
-  getItemAMonth(): Observable<Month> {
-    return this.httpClient.get<Month>('http://localhost:8080/')
+  getItemAMonth(): Observable<Months> {
+    return this.httpClient.get<Months>('http://localhost:8080/')
       .pipe(
         catchError(error => {
           console.log('Error: ', error.message);

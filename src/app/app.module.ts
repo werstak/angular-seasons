@@ -7,11 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { HeaderComponent } from './componets/header/header.component';
 import { MaterialModule } from './material.module';
+import { MonthsComponent } from './componets/months/months.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    MonthsComponent
   ],
   imports: [
     BrowserModule,

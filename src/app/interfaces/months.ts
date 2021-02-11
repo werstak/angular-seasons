@@ -1,8 +1,8 @@
-export class Month {
+export class Months {
   name?: string;
   image?: string;
   date?: string;
   description?: string;
   daysCount?: number;
-  season?: string;
+  seasonS?: string;
 }
