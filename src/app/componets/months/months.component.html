@@ -4,25 +4,34 @@
                     (groupBy)="groupBy($event)"
                     (filter)="filter($event)"
                     (search)="search($event)"
+                    (sort)="sort($event)"
   >
   </app-filter-board>
 
 
-  <div fxFlex="30%" *ngFor="let groupedMonths of months$ | async">
-    {{groupedMonths.groupName}}
-    <div *ngFor="let month of groupedMonths.months">
+  <mat-card class="mat-card-custom" fxFlex="20%" *ngFor="let groupedMonths of months$ | async">
+
+    <mat-card-header>
+      <mat-card-title>
+        {{groupedMonths.groupName}}
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content *ngFor="let month of groupedMonths.months">
       <mat-card class="example-card">
+        <img mat-card-image [src]="month?.image" alt="Photo of a Shiba Inu">
+
         <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>{{month.name}}</mat-card-title>
           <mat-card-subtitle>{{month.date}}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image [src]="month?.image" alt="Photo of a Shiba Inu">
         <mat-card-content>
           <p><span class="article-subTitle">{{month.description}}</span></p>
           <p><span class="article-subTitle">Days count {{month?.days_count}}</span></p>
         </mat-card-content>
       </mat-card>
-    </div>
-  </div>
+    </mat-card-content>
+
+
+  </mat-card>
 </div>

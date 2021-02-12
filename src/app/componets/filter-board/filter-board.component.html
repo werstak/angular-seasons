@@ -1,69 +1,41 @@
-<!--<div class="container" fxLayout="row wrap" fxLayout.xs=" column " fxLayoutGap="5px" fxLayoutAlign="center">-->
+<div class="wrap-filter">
+  <mat-form-field class="wrap-field" appearance="fill">
+    <mat-label>Group</mat-label>
+    <mat-select [value]="groupNames[0]" (selectionChange)="groupByHandler($event)">
+      <mat-option *ngFor="let name of groupNames" [value]="name">
+        {{name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<!--  <mat-form-field appearance="fill">-->
-<!--    <mat-label>Input</mat-label>-->
-<!--    <input [(ngModel)]="searchValue" matInput (change)="searchHandler()">-->
-<!--  </mat-form-field>-->
+  <mat-form-field class="wrap-field" appearance="fill">
+    <mat-label>Filter</mat-label>
+    <mat-select (selectionChange)="filterHandler($event)">
+      <mat-option>
+        Select Season
+      </mat-option>
+      <mat-option *ngFor="let name of seasonNames" [value]="name">
+        {{name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<!--  <div fxFlex="30%">-->
-<!--    <mat-form-field appearance="fill">-->
-<!--      <mat-label>Group By</mat-label>-->
-<!--      <mat-select [value]="groupNames[0]" (selectionChange)="groupByHandler($event)">-->
-<!--        <mat-option *ngFor="let name of groupNames" [value]="name">-->
-<!--          {{name}}-->
-<!--        </mat-option>-->
-<!--      </mat-select>-->
-<!--    </mat-form-field>-->
-<!--  </div>-->
-
-<!--  <div fxFlex="30%">-->
-<!--    <mat-form-field appearance="fill">-->
-<!--      <mat-label>Filter</mat-label>-->
-<!--      <mat-select (selectionChange)="filterHandler($event)">-->
-<!--        <mat-option>-->
-<!--          Select Season-->
-<!--        </mat-option>-->
-<!--        <mat-option *ngFor="let name of seasonNames" [value]="name">-->
-<!--          {{name}}-->
-<!--        </mat-option>-->
-<!--      </mat-select>-->
-<!--    </mat-form-field>-->
-<!--  </div>-->
-<!--</div>-->
-
-
-<!--
-<form class = "example-container" [ formGroup ] = "options" [ style.fontSize.px ] = "getFontSize ()">
+  <mat-form-field appearance="fill">
+    <mat-label>Sort</mat-label>
+    <mat-select (selectionChange)="sortHandler($event)">
+      <mat-option>
+        Select Sort
+      </mat-option>
+      <mat-option *ngFor="let name of sortNames" [value]="name">
+        {{name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
 
+  <mat-form-field class="wrap-field" appearance="fill">
+    <mat-label>Search</mat-label>
+    <input [(ngModel)]="searchValue" matInput (change)="searchHandler()">
+  </mat-form-field>
 
-</form>
--->
-
-
-<mat-form-field appearance="fill">
-  <mat-label>Group</mat-label>
-  <mat-select [value]="groupNames[0]" (selectionChange)="groupByHandler($event)">
-    <mat-option *ngFor="let name of groupNames" [value]="name">
-      {{name}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-
-
-<mat-form-field appearance="fill">
-  <mat-label>Filter</mat-label>
-  <mat-select (selectionChange)="filterHandler($event)">
-    <mat-option>
-      Select Season
-    </mat-option>
-    <mat-option *ngFor="let name of seasonNames" [value]="name">
-      {{name}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-
-<mat-form-field appearance="fill">
-  <mat-label>Search</mat-label>
-  <input [(ngModel)]="searchValue" matInput (change)="searchHandler()">
-</mat-form-field>
+</div>
