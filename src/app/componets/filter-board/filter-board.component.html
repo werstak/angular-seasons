@@ -1,0 +1,21 @@
+<mat-form-field appearance="fill">
+  <mat-label>Group By</mat-label>
+  <mat-select [value]="groupNames[0]" (selectionChange)="groupByHandler($event)">
+    <mat-option *ngFor="let name of groupNames" [value]="name">
+      {{name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+<mat-form-field appearance="fill">
+  <mat-label>Filter</mat-label>
+  <mat-select (selectionChange)="filterHandler($event)">
+    <mat-option>
+      Select Season
+    </mat-option>
+    <mat-option *ngFor="let name of seasonNames" [value]="name">
+      {{name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

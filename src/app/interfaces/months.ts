@@ -1,8 +1,8 @@
-export class Months {
-  name?: string;
-  image?: string;
-  date?: string;
-  description?: string;
-  daysCount?: number;
-  seasonS?: string;
+export interface Months {
+  name: string;
+  image: string;
+  date: string;
+  description: string;
+  days_count: number;
+  season: string;
 }

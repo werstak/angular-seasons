@@ -7,11 +7,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatNativeDateModule} from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
-
-
+import { MatSliderModule } from '@angular/material/slider';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSelectModule } from '@angular/material/select';
 
 
 const modules = [
@@ -25,7 +26,11 @@ const modules = [
   MatNativeDateModule,
   MatListModule,
   MatSidenavModule,
-  MatCardModule
+  MatCardModule,
+  MatSliderModule,
+  MatGridListModule,
+  MatOptionModule,
+  MatSelectModule,
 ];
 
 @NgModule({
