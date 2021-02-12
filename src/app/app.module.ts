@@ -10,6 +10,7 @@ import { MonthsComponent } from './componets/months/months.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FilterBoardComponent } from './componets/filter-board/filter-board.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { FilterBoardComponent } from './componets/filter-board/filter-board.comp
     FlexLayoutModule,
     MaterialModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,49 +1,28 @@
-<!--<div fxLayout=" row "-->
-<!--     fxLayout.xs="column"-->
-<!--     fxLayoutGap=" 10px "-->
-<!--     fxLayoutAlign="space-around"-->
-<!--&gt;-->
+<div class="container" fxLayout="row wrap" fxLayout.xs=" column " gdGap=" 15px 15px" fxLayoutAlign="space-around">
 
-<!--  <div fxFlex="100%">-->
-
-    <app-filter-board
-      (groupBy)="groupBy($event)"
-      (filter)="filter($event)"
-    ></app-filter-board>
-
-<!--  </div>-->
+  <app-filter-board fxFlex="100%"
+                    (groupBy)="groupBy($event)"
+                    (filter)="filter($event)"
+                    (search)="search($event)"
+  >
+  </app-filter-board>
 
 
-
-
-
-<!--</div>-->
-
-
-<div class=" container " fxLayout=" row " fxLayout.xs=" column " fxLayoutGap=" 0.5% "
-     fxLayoutAlign=" center ">
-  <div fxFlex=" 30% ">
-
-    <mat-card-content>
-      <div>
-        <div *ngFor="let groupedMonths of months$ | async">
-          {{groupedMonths.groupName}}
-          <div *ngFor="let month of groupedMonths.months">
-            <mat-card class="example-card">
-              <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>{{month.name}}</mat-card-title>
-                <mat-card-subtitle>{{month.date}}</mat-card-subtitle>
-              </mat-card-header>
-              <!--          <img mat-card-image [src]="month?.image" alt="Photo of a Shiba Inu">-->
-              <mat-card-content>
-                <p><span class="article-subTitle">{{month.description}}</span> {{ month?.days_count }}</p>
-              </mat-card-content>
-            </mat-card>
-          </div>
-        </div>
-      </div>
-    </mat-card-content>
-
+  <div fxFlex="30%" *ngFor="let groupedMonths of months$ | async">
+    {{groupedMonths.groupName}}
+    <div *ngFor="let month of groupedMonths.months">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{month.name}}</mat-card-title>
+          <mat-card-subtitle>{{month.date}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="month?.image" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p><span class="article-subTitle">{{month.description}}</span></p>
+          <p><span class="article-subTitle">Days count {{month?.days_count}}</span></p>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
 </div>

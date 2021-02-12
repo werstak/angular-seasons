@@ -11,9 +11,12 @@ import { Season } from '../../enums/season.enum';
 export class FilterBoardComponent {
   @Output() groupBy = new EventEmitter<GroupType>();
   @Output() filter = new EventEmitter<Season>();
+  @Output() search = new EventEmitter<string>();
 
   groupNames = Object.values(GroupType);
   seasonNames = Object.values(Season);
+
+  searchValue = '';
 
   groupByHandler(groupType: MatSelectChange): void {
     this.groupBy.emit(groupType.value);
@@ -21,5 +24,9 @@ export class FilterBoardComponent {
 
   filterHandler(groupType: MatSelectChange): void {
     this.filter.emit(groupType.value);
+  }
+
+  searchHandler(): void {
+    this.search.emit(this.searchValue);
   }
 }

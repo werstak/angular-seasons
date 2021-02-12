@@ -20,6 +20,7 @@ export class MonthsComponent implements OnInit {
   }[]>;
   groupType$ = new BehaviorSubject<GroupType>(GroupType.Season);
   filter$ = new BehaviorSubject<Season | null>(null);
+  search$ = new BehaviorSubject<string>('');
 
   constructor(
     public monthsService: MonthsService,
@@ -32,23 +33,32 @@ export class MonthsComponent implements OnInit {
     this.months$ = combineLatest([
       months$,
       this.filter$,
+      this.search$,
       this.groupType$
     ])
-    .pipe(
-      map(([months, filter, groupType]) => {
-        const filteredMonths = months.filter(month => {
-          return !filter || month.season === filter;
-        });
-        const groupedMonths = groupBy(filteredMonths, groupType);
-        return Object.keys(groupedMonths).map((groupName) => {
-          return {
-            groupName,
-            months: groupedMonths[groupName]
-          };
-        });
-      }),
-    );
+      .pipe(
+        map(([months, filter, search, groupType]) => {
+          const filteredMonths = months.filter(month => {
+            return !filter || month.season === filter;
+          });
 
+          const searchedMonths = filteredMonths.filter(({name, description, season}) => {
+            if (!search) {
+              return true;
+            }
+            const regExp = new RegExp(`.*${search}.*`, 'i');
+            return regExp.test(name) || regExp.test(description) || regExp.test(season);
+          });
+
+          const groupedMonths = groupBy(searchedMonths, groupType);
+          return Object.keys(groupedMonths).map((groupName) => {
+            return {
+              groupName,
+              months: groupedMonths[groupName]
+            };
+          });
+        }),
+      );
   }
 
   groupBy(groupType: GroupType): void {
@@ -57,5 +67,9 @@ export class MonthsComponent implements OnInit {
 
   filter(groupType: Season): void {
     this.filter$.next(groupType);
+  }
+
+  search(value: string): void {
+    this.search$.next(value);
   }
 }
