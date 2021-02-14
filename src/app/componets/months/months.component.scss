@@ -1,3 +1,22 @@
-.mat-card-custom {
-  background-color: rgba(0,0,0,.04);
+.card-row {
+  background-color: rgba(0, 0, 0, .04);
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.wrap-card {
+  width: 100%;
+  max-width: 300px;
+  margin: 15px;
+}
+
+.month-card {
+  //display: flex;
+  //justify-content: space-between;
+}
+
+.wrap-card-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }

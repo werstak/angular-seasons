@@ -1,17 +1,17 @@
 <div class="wrap-filter">
   <div class="wrap-filter__center">
 
-  <mat-form-field class="wrap-field" appearance="fill">
-    <mat-label>Group</mat-label>
-    <mat-select (selectionChange)="groupByHandler($event)">
-      <mat-option>
-        Select Group
-      </mat-option>
-      <mat-option *ngFor="let name of groupNames" [value]="name">
-        {{name}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field class="wrap-field" appearance="fill">
+      <mat-label>Group</mat-label>
+      <mat-select (selectionChange)="groupByHandler($event)">
+        <mat-option>
+          Select Group
+        </mat-option>
+        <mat-option *ngFor="let name of groupNames" [value]="name">
+          {{name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
     <mat-form-field class="wrap-field" appearance="fill">
       <mat-label>Filter</mat-label>
@@ -22,22 +22,22 @@
       </mat-select>
     </mat-form-field>
 
-  <mat-form-field class="wrap-field" appearance="fill">
-    <mat-label>Sort</mat-label>
-    <mat-select (selectionChange)="sortHandler($event)">
-      <mat-option>
-        Select Sort
-      </mat-option>
-      <mat-option *ngFor="let name of sortNames" [value]="name">
-        {{name}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field class="wrap-field" appearance="fill">
+      <mat-label>Sort</mat-label>
+      <mat-select (selectionChange)="sortHandler($event)">
+        <mat-option>
+          Select Sort
+        </mat-option>
+        <mat-option *ngFor="let name of sortNames" [value]="name">
+          {{name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field class="wrap-field" appearance="fill">
-    <mat-label>Search</mat-label>
-    <input [(ngModel)]="searchValue" matInput (change)="searchHandler()">
-  </mat-form-field>
+    <mat-form-field class="wrap-field" appearance="fill">
+      <mat-label>Search</mat-label>
+      <input [(ngModel)]="searchValue" matInput (change)="searchHandler()">
+    </mat-form-field>
 
   </div>
 </div>

@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Months } from '../../interfaces/months';
-import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { MonthsService } from '../../services/months.service';
-import { filter, map } from 'rxjs/operators';
-import { groupBy, sortBy } from 'lodash';
-import { GroupType } from '../../enums/group-type.enum';
-import { Season } from '../../enums/season.enum';
-import { SortType } from '../../enums/sort-type.enum';
+import {Component, OnInit} from '@angular/core';
+import {Months} from '../../interfaces/months';
+import {BehaviorSubject, combineLatest, Observable} from 'rxjs';
+import {MonthsService} from '../../services/months.service';
+import {filter, map} from 'rxjs/operators';
+import {groupBy, sortBy} from 'lodash';
+import {GroupType} from '../../enums/group-type.enum';
+import {Season} from '../../enums/season.enum';
+import {SortType} from '../../enums/sort-type.enum';
 
 
 @Component({

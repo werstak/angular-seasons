@@ -1,4 +1,4 @@
-<div class="container" fxLayout="row wrap" fxLayout.xs=" column " gdGap=" 15px 15px" fxLayoutAlign="space-around">
+<div class="container" fxFlexFill fxLayout="column" gdGap=" 15px 15px" fxLayoutAlign="space-between">
 
   <app-filter-board fxFlex="100%"
                     (groupBy)="groupBy($event)"
@@ -8,32 +8,40 @@
   >
   </app-filter-board>
 
-  <ng-template [ngIf]="groupType$ | async" [ngIfElse]="months">
-    <mat-card class="mat-card-custom" fxFlex="20%" *ngFor="let groupedMonths of groupedMonths$ | async">
-      <mat-card-header>
-        <mat-card-title>
-          {{groupedMonths.groupName}}
-        </mat-card-title>
-      </mat-card-header>
+  <div class="wrap-card-row">
+    <ng-template [ngIf]="groupType$ | async" [ngIfElse]="months">
+      <mat-card class="card-row" *ngFor="let groupedMonths of groupedMonths$ | async">
+        <mat-card-header fxLayoutAlign="center center">
+          <mat-card-title>
+            {{groupedMonths.groupName}}
+          </mat-card-title>
+        </mat-card-header>
+        <div fxLayout="row wrap" fxLayoutAlign="center center">
+          <ng-container *ngTemplateOutlet="months;context:{months: groupedMonths.months}"></ng-container>
+        </div>
+      </mat-card>
+    </ng-template>
+  </div>
 
-      <ng-container *ngTemplateOutlet="months;context:{months: groupedMonths.months}"></ng-container>
-    </mat-card>
-  </ng-template>
-</div>
-
-<ng-template #months let-months="months">
-  <mat-card-content *ngFor="let month of months || (months$ | async)">
-    <mat-card class="example-card">
-      <img mat-card-image [src]="month?.image" alt="Photo of a Shiba Inu">
-
-      <mat-card-header>
-        <mat-card-title>{{month.name}}</mat-card-title>
-        <mat-card-subtitle>{{month.date}}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <p><span class="article-subTitle">{{month.description}}</span></p>
-        <p><span class="article-subTitle">Days count {{month?.days_count}}</span></p>
+  <div>
+    <ng-template #months let-months="months">
+      <mat-card-content class="wrap-card" *ngFor="let month of months || (months$ | async)">
+        <mat-card class="month-card">
+          <img mat-card-image [src]="month?.image" alt="Photo of a Shiba Inu">
+          <div>
+            <mat-card-header>
+              <mat-card-title>{{month.name}}</mat-card-title>
+              <mat-card-subtitle>{{month.date}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p><span class="article-subTitle">{{month.description}}</span></p>
+              <p><span class="article-subTitle">Days count {{month?.days_count}}</span></p>
+            </mat-card-content>
+          </div>
+        </mat-card>
       </mat-card-content>
-    </mat-card>
-  </mat-card-content>
-</ng-template>
+    </ng-template>
+  </div>
+
+
+</div>
