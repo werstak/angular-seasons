@@ -1,8 +1,20 @@
 .wrap-filter {
   display: flex;
+  width: 100%;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+
+  &__center {
+    display: flex;
+    width: 100%;
+    max-width: 800px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
 }
+
 .wrap-field {
-  margin: 20px;
+  margin: 0 15px 10px;
 }

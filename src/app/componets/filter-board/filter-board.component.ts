@@ -1,10 +1,9 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { GroupType } from '../../enums/group-type.enum';
-import { MatSelectChange } from '@angular/material/select';
-import { Season } from '../../enums/season.enum';
-import { SortType } from '../../enums/sort-type.enum';
+import {Component, Output, EventEmitter} from '@angular/core';
+import {GroupType} from '../../enums/group-type.enum';
+import {MatSelectChange} from '@angular/material/select';
+import {Season} from '../../enums/season.enum';
+import {SortType} from '../../enums/sort-type.enum';
 
-// import { SortType } from '../../enums/sort-type.enum';
 
 @Component({
   selector: 'app-filter-board',
@@ -13,7 +12,7 @@ import { SortType } from '../../enums/sort-type.enum';
 })
 export class FilterBoardComponent {
   @Output() groupBy = new EventEmitter<GroupType>();
-  @Output() filter = new EventEmitter<Season>();
+  @Output() filter = new EventEmitter<Season[]>();
   @Output() sort = new EventEmitter<SortType>();
   @Output() search = new EventEmitter<string>();
 
