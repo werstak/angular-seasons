@@ -1,7 +1,10 @@
 <div class="wrap-filter">
   <mat-form-field class="wrap-field" appearance="fill">
     <mat-label>Group</mat-label>
-    <mat-select [value]="groupNames[0]" (selectionChange)="groupByHandler($event)">
+    <mat-select (selectionChange)="groupByHandler($event)">
+      <mat-option>
+        Select Group
+      </mat-option>
       <mat-option *ngFor="let name of groupNames" [value]="name">
         {{name}}
       </mat-option>

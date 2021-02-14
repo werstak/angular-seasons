@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {Months} from '../../interfaces/months';
-import {BehaviorSubject, combineLatest, Observable} from 'rxjs';
-import {MonthsService} from '../../services/months.service';
-import {map} from 'rxjs/operators';
-import {groupBy, sortBy} from 'lodash';
-import {GroupType} from '../../enums/group-type.enum';
-import {Season} from '../../enums/season.enum';
-import {SortType} from '../../enums/sort-type.enum';
+import { Component, OnInit } from '@angular/core';
+import { Months } from '../../interfaces/months';
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
+import { MonthsService } from '../../services/months.service';
+import { filter, map } from 'rxjs/operators';
+import { groupBy, sortBy } from 'lodash';
+import { GroupType } from '../../enums/group-type.enum';
+import { Season } from '../../enums/season.enum';
+import { SortType } from '../../enums/sort-type.enum';
 
 
 @Component({
@@ -15,11 +15,12 @@ import {SortType} from '../../enums/sort-type.enum';
   styleUrls: ['./months.component.scss']
 })
 export class MonthsComponent implements OnInit {
-  months$: Observable<{
+  months$: Observable<Months[]>;
+  groupedMonths$: Observable<{
     groupName: string,
     months: Months[]
   }[]>;
-  groupType$ = new BehaviorSubject<GroupType>(GroupType.Season);
+  groupType$ = new BehaviorSubject<GroupType | null>(null);
   filter$ = new BehaviorSubject<Season | null>(null);
   sort$ = new BehaviorSubject<SortType | null>(null);
   search$ = new BehaviorSubject<string>('');
@@ -37,34 +38,41 @@ export class MonthsComponent implements OnInit {
       this.filter$,
       this.search$,
       this.sort$,
+    ])
+    .pipe(
+      map(([months, filterBySeason, search, sort]) => {
+        const filteredMonths = months.filter(month => {
+          return !filterBySeason || month.season === filterBySeason;
+        });
+
+        const searchedMonths = filteredMonths.filter(({name, description, season}) => {
+          if (!search) {
+            return true;
+          }
+          const regExp = new RegExp(`.*${search}.*`, 'i');
+          return regExp.test(name) || regExp.test(description) || regExp.test(season);
+        });
+
+        return sort ? sortBy(searchedMonths, sort) : searchedMonths;
+      }),
+    );
+
+    this.groupedMonths$ = combineLatest([
+      this.months$,
       this.groupType$
     ])
-      .pipe(
-        map(([months, filter, search, sort, groupType]) => {
-          const filteredMonths = months.filter(month => {
-            return !filter || month.season === filter;
-          });
-
-          const searchedMonths = filteredMonths.filter(({name, description, season}) => {
-            if (!search) {
-              return true;
-            }
-            const regExp = new RegExp(`.*${search}.*`, 'i');
-            return regExp.test(name) || regExp.test(description) || regExp.test(season);
-          });
-
-          const sortedMonths = sort ? sortBy(searchedMonths, sort) : searchedMonths;
-
-          const groupedMonths = groupBy(sortedMonths, groupType);
-          return Object.keys(groupedMonths).map((groupName) => {
-            return {
-              groupName,
-              months: groupedMonths[groupName]
-            };
-          });
-        }),
-      );
-
+    .pipe(
+      filter(([, groupType]) => !!groupType),
+      map(([months, groupType]) => {
+        const groupedMonths = groupBy(months, groupType || '');
+        return Object.keys(groupedMonths).map((groupName) => {
+          return {
+            groupName,
+            months: groupedMonths[groupName]
+          };
+        });
+      })
+    );
   }
 
   groupBy(groupType: GroupType): void {
