@@ -1,6 +1,6 @@
 export enum SortType {
-  Date = 'Date',
-  Name = 'Name',
-  Season = 'Season',
-  DaysCount = 'Days count',
+  Date = 'date',
+  Name = 'name',
+  Season = 'season',
+  DaysCount = 'days_count',
 }
