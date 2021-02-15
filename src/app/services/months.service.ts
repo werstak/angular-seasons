@@ -19,7 +19,6 @@ export class MonthsService {
     return this.httpClient.get<ServerResponse<Months[]>>(environment.serverUrl)
       .pipe(
         map(res => {
-          console.log(res);
           return res.data;
         }),
         // pluck('data'),

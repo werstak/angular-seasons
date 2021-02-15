@@ -1,4 +1,4 @@
 export enum GroupType {
-  Season = 'season',
-  DaysCount = 'days_count',
+  Season = 'Season',
+  DaysCount = 'Days count',
 }
