@@ -24,6 +24,7 @@ export class MonthsComponent implements OnInit {
   filter$ = new BehaviorSubject<Season[]>([]);
   sort$ = new BehaviorSubject<SortType | null>(null);
   search$ = new BehaviorSubject<string>('');
+  displayMode = 1;
 
   constructor(
     public monthsService: MonthsService,
@@ -41,6 +42,7 @@ export class MonthsComponent implements OnInit {
     ])
       .pipe(
         map(([months, filterBySeason, search, sort]) => {
+
           const filteredMonths = months.filter(month => {
             if (!filterBySeason.length) {
               return true;
@@ -65,7 +67,7 @@ export class MonthsComponent implements OnInit {
       this.groupType$
     ])
       .pipe(
-        filter(([, groupType]) => !!groupType),
+        filter(([groupType]) => !!groupType),
         map(([months, groupType]) => {
           const groupedMonths = groupBy(months, groupType || '');
           return Object.keys(groupedMonths).map((groupName) => {
@@ -92,5 +94,10 @@ export class MonthsComponent implements OnInit {
 
   search(value: string): void {
     this.search$.next(value);
+  }
+
+  onDisplayModeChange(mode: number): void {
+    console.log(this.displayMode);
+    this.displayMode = mode;
   }
 }
