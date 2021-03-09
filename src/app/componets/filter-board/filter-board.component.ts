@@ -1,8 +1,8 @@
-import {Component, Output, EventEmitter} from '@angular/core';
-import {GroupType} from '../../enums/group-type.enum';
-import {MatSelectChange} from '@angular/material/select';
-import {Season} from '../../enums/season.enum';
-import {SortType} from '../../enums/sort-type.enum';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { GroupType } from '../../enums/group-type.enum';
+import { MatSelectChange } from '@angular/material/select';
+import { Season } from '../../enums/season.enum';
+import { SortType } from '../../enums/sort-type.enum';
 
 
 @Component({
@@ -19,7 +19,6 @@ export class FilterBoardComponent {
   groupNames = Object.values(GroupType);
   seasonNames = Object.values(Season);
   sortNames = Object.values(SortType);
-
   searchValue = '';
 
   groupByHandler(groupType: MatSelectChange): void {

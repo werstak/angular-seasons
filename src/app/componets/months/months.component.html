@@ -24,7 +24,7 @@
     </div>
   </div>
 
-  <div class="wrap-card-row">
+  <div fxLayout="row wrap" fxLayoutAlign="center center">
     <ng-template [ngIf]="groupType$ | async" [ngIfElse]="months">
       <mat-card class="card-row" *ngFor="let groupedMonths of groupedMonths$ | async">
         <mat-card-header fxLayoutAlign="center center">
